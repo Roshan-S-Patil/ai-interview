@@ -1,0 +1,210 @@
+/* GoogleCallback.module.css */
+
+.container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #dbeafe, #ffffff, #e0e7ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin: auto;
+}
+
+.backgroundDecorations {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.decorationTop {
+  position: absolute;
+  top: -10rem;
+  right: -10rem;
+  width: 20rem;
+  height: 20rem;
+  background-color: #dbeafe;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.decorationBottom {
+  position: absolute;
+  bottom: -10rem;
+  left: -10rem;
+  width: 20rem;
+  height: 20rem;
+  background-color: #e0e7ff;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  animation: pulse 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.mainContent {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.logoContainer {
+  margin-bottom: 2rem;
+}
+
+.loaderWrapper {
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto;
+}
+
+.spinnerRing {
+  position: absolute;
+  inset: 0;
+  border: 4px solid #e5e7eb;
+  border-radius: 50%;
+  border-top-color: #3b82f6;
+  animation: spin 1s linear infinite;
+}
+
+.logoCircle {
+  position: absolute;
+  inset: 0.5rem;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.googleLogo {
+  width: 2rem;
+  height: 2rem;
+}
+
+.textContainer {
+  margin-top: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.description {
+  color: #6b7280;
+  animation: fadeIn 0.6s ease-out forwards;
+  animation-delay: 300ms;
+  opacity: 0;
+}
+
+.progressContainer {
+  margin-top: 2rem;
+  width: 16rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progressBar {
+  height: 0.25rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(to right, #3b82f6, #6366f1);
+  border-radius: 9999px;
+  animation: progress 2s ease-in-out infinite;
+}
+
+.securityBadge {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  animation: fadeIn 0.6s ease-out forwards;
+  animation-delay: 700ms;
+  opacity: 0;
+}
+
+.lockIcon {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+/* Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .loaderWrapper {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .progressContainer {
+    width: 12rem;
+  }
+
+  .decorationTop,
+  .decorationBottom {
+    width: 15rem;
+    height: 15rem;
+  }
+}
