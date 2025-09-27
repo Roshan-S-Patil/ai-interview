@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Login.module.css';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-const REDIRECT_URI = "http://localhost:5173/google-callback";
+const REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
 
 const Login = () => {
   const handleLogin = () => {

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'
 import styles from './GoogleCallback.module.css';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { googleVerificationApi } from '../../api/authapi';
 
-const REDIRECT_URI = "http://localhost:5173/google-callback";
-const BACKEND_URL = "http://localhost:4000/auth/google";
+const REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
 const GoogleCallback = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,11 +37,9 @@ const GoogleCallback = () => {
         try {
             if (code) {
                 // Send code to backend for verification
-                const res = await axios.post(BACKEND_URL, { code, redirect_uri: REDIRECT_URI },{withCredentials:true, headers:{Accept:"application/json", "Content-Type":"application/json"}});
+                const res = await googleVerificationApi(code, REDIRECT_URI);
                 if (res.data) {
-                  console.log("Tokens received:", res.data);
-                  dispatch(setUser(res?.data?.data)); // Store user info in Redux
-                    // Redirect to homepage or dashboard
+                  dispatch(setUser(res?.data));
                   navigate('/');
                   window.location.replace('/');
                 } else {

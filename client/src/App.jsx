@@ -6,10 +6,10 @@ import styles from './App.module.css';
 import GoogleCallback from './pages/google-callback/GoogleCallback';
 import Home from './pages/home/Home';
 import Navbar from './components/navbar/Navbar';
-import axios from 'axios';
 import ChatPage from './pages/chatPage/ChatPage';
 import { setUser } from './redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
+import { getUserApi } from './api/authapi';
 function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,10 +21,8 @@ function App() {
   
   const getUser = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/auth/users', {
-        withCredentials: true,
-      });
-      dispatch(setUser(response?.data?.data));
+      const response = await getUserApi();
+      dispatch(setUser(response?.data));
     } catch (error) {
       console.error('Error fetching user data:', error);
       navigate('/login');
