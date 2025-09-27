@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './Login.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
 
 const Login = () => {
+  const navigate = useNavigate();
   const handleLogin = () => {
     const params = new URLSearchParams({
       client_id: GOOGLE_CLIENT_ID,
@@ -83,9 +85,11 @@ const Login = () => {
         <div className={styles.footer}>
           <p className={styles.footerText}>
             By continuing, you agree to our{' '}
-            <a href="#" className={styles.footerLink}>Terms</a>
+            <p className={styles.footerLink} onClick={() => navigate("/privacy-policy")}>Terms</p>
+            {/* <a href="#" className={styles.footerLink}>Terms</a> */}
             {' '}and{' '}
-            <a href="#" className={styles.footerLink}>Privacy Policy</a>
+            <p className={styles.footerLink} onClick={() => navigate("/privacy-policy")}>Privacy Policy</p>
+            {/* <a href="/privacy-policy" onclli className={styles.footerLink}>Privacy Policy</a> */}
           </p>
         </div>
       </div>

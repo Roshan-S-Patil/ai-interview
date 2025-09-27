@@ -10,6 +10,7 @@ import ChatPage from './pages/chatPage/ChatPage';
 import { setUser } from './redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import { getUserApi } from './api/authapi';
+import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy';
 function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,7 +37,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/google-callback' element={<GoogleCallback />} />
-          <Route path='/chat/:topicId' element={<ChatPage/>} />
+          <Route path='/chat/:topicId' element={<ChatPage />} />
+          <Route path='/privacy-policy' element={<PrivacyPolicy/>} />
         </Routes>
     </div>
   )
