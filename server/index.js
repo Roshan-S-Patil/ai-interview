@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoute from "./routes/userRoute.js";
+import chatRoute from "./routes/chatRoute.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -24,6 +25,7 @@ app.use(
 );
 
 app.use("/auth", userRoute);
+app.use("/chat", chatRoute);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
