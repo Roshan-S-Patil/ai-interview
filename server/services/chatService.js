@@ -6,11 +6,12 @@ const chatbot_uri = process.env.CHATBOT_URI;
 export const ask = async (thread_id, messages) => {
   console.log("chatbot_uri:", thread_id, messages);
   try {
-    const response = await axios.post(`${chatbot_uri}/chat/ask`, {
+    const response = await axios.post(`${chatbot_uri}/api/chat/ask`, {
       thread_id,
       messages,
     });
-    return successResponse(res, response.data);
+    console.log("Response from chatbot service:", response.data);
+    return { success: true, data: response.data };
   } catch (error) {
     return errorResponse(error);
   }

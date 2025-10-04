@@ -17,7 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["https://www.roshanpatil.com", "https://roshanpatil.com"], // must match exactly, no trailing slash
+    origin: [
+      "https://www.roshanpatil.com",
+      "https://roshanpatil.com",
+      "http://localhost:5173",
+    ], // must match exactly, no trailing slash
     credentials: true, // required for cookies
     methods: ["GET", "POST", "OPTIONS"], // wildcard "*" won't work
     allowedHeaders: ["Content-Type", "Authorization", "Accept"],
