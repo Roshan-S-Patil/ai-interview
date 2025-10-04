@@ -15,6 +15,8 @@ import {
   Check
 } from 'lucide-react';
 import styles from './ChatPage.module.css';
+import { askTextQuestion } from '../../api/chatapi';
+import ReactMarkdown  from 'react-markdown'
 
 const ChatPage = () => {
   const { topicId } = useParams();
@@ -119,18 +121,30 @@ const ChatPage = () => {
     setMessages(prev => [...prev, userMessage]);
     setInputMessage('');
     setIsTyping(true);
-
-    // Simulate AI response
-    setTimeout(() => {
-      const aiResponse = {
+    try {
+      const response = await askTextQuestion({
+        "thread_id": "1",
+        messages: [
+          { role: "human", content: inputMessage }
+        ]
+      });
+      console.log('AI Response:', response);
+      const aiReply = response?.data?.messages[0]?.content || "I'm sorry, I didn't understand that.";
+      if (response.data) {
+        const aiResponse = {
         id: messages.length + 2,
-        text: `Thanks for your question about ${inputMessage}. This is a simulated AI response for ${currentTopic.title} ${sessionType}. In a real implementation, this would be connected to your AI backend.`,
+        text: aiReply,
         sender: 'ai',
         timestamp: new Date()
-      };
+      }; 
       setMessages(prev => [...prev, aiResponse]);
+    }
+      // setIsTyping(false);
+    } catch (error) {
+      console.log('Error fetching AI response:', error);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const copySessionLink = () => {
@@ -206,7 +220,9 @@ const ChatPage = () => {
                 {message.sender === 'user' ? <User size={16} /> : <Bot size={16} />}
               </div>
               <div className={styles.messageContent}>
-                <p className={styles.messageText}>{message.text}</p>
+                {/* <p className={styles.messageText}> */}
+                  <ReactMarkdown>{message.text}</ReactMarkdown>
+                {/* </p> */}
                 <span className={styles.messageTime}>
                   {formatTime(message.timestamp)}
                 </span>

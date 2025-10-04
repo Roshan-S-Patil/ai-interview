@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoute from "./routes/userRoute.js";
+import chatRoute from "./routes/chatRoute.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -16,7 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["https://www.roshanpatil.com", "https://roshanpatil.com"], // must match exactly, no trailing slash
+    origin: [
+      "https://www.roshanpatil.com",
+      "https://roshanpatil.com",
+      "http://localhost:5173",
+    ], // must match exactly, no trailing slash
     credentials: true, // required for cookies
     methods: ["GET", "POST", "OPTIONS"], // wildcard "*" won't work
     allowedHeaders: ["Content-Type", "Authorization", "Accept"],
@@ -24,6 +29,7 @@ app.use(
 );
 
 app.use("/auth", userRoute);
+app.use("/chat", chatRoute);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
