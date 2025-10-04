@@ -10,7 +10,8 @@ export const ask = async (thread_id, messages) => {
       thread_id,
       messages,
     });
-    return successResponse(res, response.data);
+    console.log("Response from chatbot service:", response.data);
+    return { success: true, data: response.data };
   } catch (error) {
     return errorResponse(error);
   }
