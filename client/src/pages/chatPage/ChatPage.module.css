@@ -188,7 +188,7 @@
 
 .aiMessage .messageAvatar {
   background: #e0e0e0;
-  color: #666;
+  color: black;
 }
 
 .messageContent {
@@ -202,7 +202,7 @@
 
 .userMessage .messageContent {
   background: var(--primary-color);
-  color: white;
+  color: white !important;
   border-color: var(--primary-color);
 }
 
@@ -290,7 +290,7 @@
 
 .messageInput:disabled {
   background: #f0f0f0;
-  color: #999;
+  color: #000000;
   cursor: not-allowed;
 }
 
