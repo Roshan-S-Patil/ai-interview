@@ -221,7 +221,7 @@ const ChatPage = () => {
               </div>
               <div className={styles.messageContent}>
                 {/* <p className={styles.messageText}> */}
-                  <ReactMarkdown>{message.text}</ReactMarkdown>
+                  <ReactMarkdown style={{color:"white"}}>{message.text}</ReactMarkdown>
                 {/* </p> */}
                 <span className={styles.messageTime}>
                   {formatTime(message.timestamp)}
